@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet" />
+    <title>Teste de Estágio Movere Software</title>
+</head>
+<body>
+    <main class="container">
+        <div class="register-sales">
+            <h1>Registrar Venda</h1>
+    
+            <form action="GET">
+                <div class="form-control">
+                    <label for="client-name">Nome do Comprador</label>
+                    <input type="text" id="client-name" placeholder="Insira o comprador" autocomplete="off" />
+                </div>
+
+                <div class="form-control">
+                    <label for="sale-price">Valor da Venda</label>
+                    <input type="text" id="sale-price" placeholder="Insira o valor da venda" autocomplete="off" />
+                </div>
+
+                <div class="form-control">
+                    <label for="sale-date">Data da Venda</label>
+                    <input type="date" id="sale-date" />
+                </div>
+
+                <button type="button">Inserir Venda</button>
+            </form>
+        </div>
+        
+        <div class="sales-container"></div>
+    
+        <div class="button-container">
+            <button type="button">Maior Venda</button>
+            <button type="button">Salvar em PDF</button>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
