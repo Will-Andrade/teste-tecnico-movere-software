@@ -83,4 +83,9 @@ form > button {
     border-radius: 5px;
     color: #fff;
     background-color: #48a9fb;
+    transition: background-color 0.2s;
+}
+
+form > button:hover {
+    background-color: #1691fa;
 }
