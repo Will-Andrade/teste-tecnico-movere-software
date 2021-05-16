@@ -17,3 +17,70 @@ html {
     text-rendering: optimizeLegibility;
     font-display: optional;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Containers */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.register-sales {
+   background-color: #fff; 
+   padding: 1.5rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5em;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Elements */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.register-sales > h1 {
+    margin-bottom: 0.5em;
+    color: #1691fa;
+    font-size: 2.4em;
+    word-spacing: 0.04em;
+    letter-spacing: 0.01em;
+}
+
+.form-control label {
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+.form-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.6em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 1px solid #48a9fb;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #48a9fb;
+}
