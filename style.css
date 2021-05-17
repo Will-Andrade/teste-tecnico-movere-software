@@ -36,7 +36,7 @@ html {
 .register-sales {
    background-color: #fff; 
    width: 450px;
-   padding: 1.5rem;
+   padding: 1rem;
    border-radius: 5px;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -132,4 +132,22 @@ tr {
 
 td {
     text-align: center;
+}
+
+a:link,
+a:visited {
+    display: inline-block;
+    padding: 5px 15px ;
+    margin: 0 15px 7px 0 ;
+    border: 1px solid #1691fa;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1691fa;
+    font-weight: 400;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+a:hover {
+    background-color: #1691fa;
+    color: #fff;
 }
