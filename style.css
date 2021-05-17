@@ -35,13 +35,24 @@ html {
 
 .register-sales {
    background-color: #fff; 
+   width: 450px;
    padding: 1.5rem;
+   border-radius: 5px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .form-control {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5em;
+}
+
+.sales-container {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -54,6 +65,7 @@ html {
     font-size: 2.4em;
     word-spacing: 0.04em;
     letter-spacing: 0.01em;
+    text-align: center;
 }
 
 .form-control label {
@@ -88,4 +100,36 @@ form > button {
 
 form > button:hover {
     background-color: #1691fa;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #000;
+}
+
+thead {
+    /* display: table; */
+    width: calc(100% - 17px);
+    background-color: #034075;
+    color: #fff;
+}
+
+tbody {
+    display: block;
+    max-height: 120px;
+    overflow-y: scroll;
+}
+
+th, td {
+    width: 33.33%;
+    padding: 5px;
+}
+
+tr {
+    display: table;
+    width: 100%;
+}
+
+td {
+    text-align: center;
 }
