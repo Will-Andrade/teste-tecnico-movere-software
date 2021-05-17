@@ -55,6 +55,10 @@ html {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+/* .hidden {
+    display: none;
+} */
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Elements */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -108,7 +112,6 @@ table {
 }
 
 thead {
-    /* display: table; */
     width: calc(100% - 17px);
     background-color: #034075;
     color: #fff;
