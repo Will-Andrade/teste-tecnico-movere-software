@@ -13,15 +13,15 @@
         <div class="register-sales">
             <h1>Registrar Venda</h1>
     
-            <form action="POST">
+            <form>
                 <div class="form-control">
                     <label for="client-name">Nome do Comprador</label>
-                    <input type="text" id="client-name" placeholder="Insira o comprador" autocomplete="off" required />
+                    <input type="text" id="customer-name" placeholder="Movere Software" autocomplete="off" required autofocus />
                 </div>
 
                 <div class="form-control">
                     <label for="sale-price">Valor da Venda</label>
-                    <input type="text" id="sale-price" placeholder="Insira o valor da venda" autocomplete="off" required />
+                    <input type="number" id="sale-price" placeholder="R$" autocomplete="off" required />
                 </div>
 
                 <div class="form-control">
@@ -29,7 +29,7 @@
                     <input type="date" id="sale-date" required />
                 </div>
 
-                <button type="button">Inserir Venda</button>
+                <button type="submit">Inserir Venda</button>
             </form>
         </div>
 
