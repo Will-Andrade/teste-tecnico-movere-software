@@ -109,6 +109,7 @@ form > button:hover {
 table {
     border-collapse: collapse;
     border: 1px solid #000;
+    width: 430px;
 }
 
 thead {
@@ -153,4 +154,20 @@ a:visited {
 a:hover {
     background-color: #1691fa;
     color: #fff;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Fixes */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
