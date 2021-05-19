@@ -1,3 +1,4 @@
+const mainTitle = document.querySelector('h1');
 const registerForm = document.querySelector('form');
 const customerName = document.querySelector('#customer-name');
 const salePrice = document.querySelector('#sale-price');
@@ -5,6 +6,7 @@ const saleDate = document.querySelector('#sale-date');
 const salesContainer = document.querySelector('div.sales-container');
 const biggestSaleBtn = document.querySelector('a.biggest-sale');
 const tableBody = document.querySelector('tbody');
+const feedbackParagraph = document.createElement('p');
 
 const validateUsername = name => name.trim() === '' ? false : name;
 
@@ -96,7 +98,9 @@ biggestSaleBtn.addEventListener('click', () => {
     const biggestSale = allSaleValues.reduce((acc, value) => 
         value > acc ? acc = value : acc , 0)
 
-    console.log('Wants the biggest sale!', biggestSale);
+    feedbackParagraph.textContent =`A maior venda teve o valor de R$${biggestSale}`
+    
+    mainTitle.insertAdjacentElement('afterend', feedbackParagraph)
 })
 
 if (localStorage.getItem('sales')) {
