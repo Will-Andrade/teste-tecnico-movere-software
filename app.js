@@ -15,21 +15,58 @@ const getDate = date => {
     const dateObj = new Date(date);
     const formatedDateTimezone = new Date
         (dateObj.getTime() + Math.abs(dateObj.getTimezoneOffset() * 60000));
-        
+
     const day = formatTimeUnit(formatedDateTimezone.getDate());
     const month = formatTimeUnit(formatedDateTimezone.getMonth() + 1);
 
     return `${day}/${month}/${formatedDateTimezone.getFullYear()}`;
 }
 
-const insertNewSale = (customer, value, date) => {
-    tableBody.innerHTML += `
+const showSales = shouldGetAll => {
+    const sales = JSON.parse(localStorage.getItem('sales'));
+    const lastSale = sales[sales.length - 1];
+
+    if (shouldGetAll) {
+        sales.forEach(({ customer, value, date }) => {
+            tableBody.innerHTML += `
+            <tr>
+                <td>${customer}</td>
+                <td>R$${value}</td>
+                <td>${date}</td>
+            </tr>
+            `
+        })
+        return
+    }
+
+    return tableBody.innerHTML += `
     <tr>
-        <td>${customer}</td>
-        <td>R$${value}</td>
-        <td>${date}</td>
+        <td>${lastSale.customer}</td>
+        <td>R$${lastSale.value}</td>
+        <td>${lastSale.date}</td>
     </tr>
     `
+}
+
+const insertNewSale = (customer, value, date) => {
+    const newSale = { customer, value, date };
+    const savedSales = localStorage.getItem('sales')
+
+    if (!savedSales) {
+        localStorage.setItem('sales', JSON.stringify([newSale]));
+        showSales(true);
+        return
+    }
+    
+    const sales = JSON.parse(localStorage.getItem('sales'));
+    sales.push(newSale);
+    localStorage.setItem('sales', JSON.stringify(sales));    
+    showSales(false);
+}
+
+const checkSalesVisibility = () => {
+    const isHidden = salesContainer.classList.contains('hidden');
+    return isHidden ? salesContainer.classList.remove('hidden') : null
 }
 
 registerForm.addEventListener('submit', e => {
@@ -40,12 +77,18 @@ registerForm.addEventListener('submit', e => {
     const formatedDate = getDate(saleDate.value);
 
     if([validUsername, validSaleValue, formatedDate].includes(false)) {
-        return 'Error'
+        alert('Por favor preencha o formulário com dados válidos!');
+        return
     }
 
-    salesContainer.classList.remove('hidden');
+    checkSalesVisibility();
 
     insertNewSale(validUsername, validSaleValue, formatedDate);
 
     registerForm.reset()
 })
+
+if (localStorage.getItem('sales')) {
+    checkSalesVisibility();
+    showSales(true);
+}
