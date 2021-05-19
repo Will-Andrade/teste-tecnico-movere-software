@@ -5,52 +5,40 @@ const saleDate = document.querySelector('#sale-date');
 const salesContainer = document.querySelector('div.sales-container');
 const tableBody = document.querySelector('tbody');
 
+const validateUsername = name => name.trim() === '' ? false : name;
+
+const validateValue = value => Number(value) > 0 ? value : false;
+
+const getDate = date => {
+    const dateObj = new Date(date);
+
+    return `${dateObj.getDate() + 1}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
+}
+
 const insertNewSale = (customer, value, date) => {
     tableBody.innerHTML += `
     <tr>
         <td>${customer}</td>
-        <td>${value}</td>
+        <td>R$${value}</td>
         <td>${date}</td>
     </tr>
     `
 }
 
-const formatDate = date => new Date(date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
-
 registerForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const isAValidCustomer = customerName.value.trim() !== '';
-    const isAValidSalePrice = salePrice.value.trim() !== '';
-    const isAValidSaleDate = saleDate.value !== '' ? formatDate(saleDate.value) : false;
+    const validUsername = validateUsername(customerName.value);
+    const validSaleValue = validateValue(salePrice.value);
+    const formatedDate = getDate(saleDate.value);
 
-    console.log(isAValidSaleDate);
-
-    const moneyInBRL = Number(salePrice.value).toLocaleString('pt-br', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
-
-    console.log(moneyInBRL);
-
-    if (isAValidCustomer && isAValidSalePrice && isAValidSaleDate){
-        insertNewSale(customerName.value, moneyInBRL, saleDate.value);
+    if([validUsername, validSaleValue, formatedDate].includes(false)) {
+        return 'Error'
     }
 
     salesContainer.classList.remove('hidden');
+
+    insertNewSale(validUsername, validSaleValue, formatedDate);
+
     registerForm.reset()
 })
-
-// salePrice.addEventListener('input', (e) => {
-//     let formatedNumber = null;
-//     let format = parseInt(e.target.value.replace(/\D/g, ''), 10);
-
-//     formatedNumber = format.toLocaleString();
-
-//     console.log(formatedNumber);
-// })
-
-// saleDate.addEventListener('input', e => {
-//     const formatedDate = new Date(e.target.value).toLocaleDateString('pt-BR', {
-//         timeZone: 'UTC'
-//     });
-
-//     console.log(formatedDate);
-// })
