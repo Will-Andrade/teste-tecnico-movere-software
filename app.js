@@ -9,10 +9,17 @@ const validateUsername = name => name.trim() === '' ? false : name;
 
 const validateValue = value => Number(value) > 0 ? value : false;
 
+const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit;
+
 const getDate = date => {
     const dateObj = new Date(date);
+    const formatedDateTimezone = new Date
+        (dateObj.getTime() + Math.abs(dateObj.getTimezoneOffset() * 60000));
+        
+    const day = formatTimeUnit(formatedDateTimezone.getDate());
+    const month = formatTimeUnit(formatedDateTimezone.getMonth() + 1);
 
-    return `${dateObj.getDate() + 1}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
+    return `${day}/${month}/${formatedDateTimezone.getFullYear()}`;
 }
 
 const insertNewSale = (customer, value, date) => {
