@@ -3,6 +3,7 @@ const customerName = document.querySelector('#customer-name');
 const salePrice = document.querySelector('#sale-price');
 const saleDate = document.querySelector('#sale-date');
 const salesContainer = document.querySelector('div.sales-container');
+const biggestSaleBtn = document.querySelector('a.biggest-sale');
 const tableBody = document.querySelector('tbody');
 
 const validateUsername = name => name.trim() === '' ? false : name;
@@ -86,6 +87,16 @@ registerForm.addEventListener('submit', e => {
     insertNewSale(validUsername, validSaleValue, formatedDate);
 
     registerForm.reset()
+})
+
+biggestSaleBtn.addEventListener('click', () => {
+    const registeredSales = JSON.parse(localStorage.getItem('sales'));
+    const allSaleValues = registeredSales.map(({ value }) => Number(value));
+
+    const biggestSale = allSaleValues.reduce((acc, value) => 
+        value > acc ? acc = value : acc , 0)
+
+    console.log('Wants the biggest sale!', biggestSale);
 })
 
 if (localStorage.getItem('sales')) {
