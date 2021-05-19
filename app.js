@@ -1,3 +1,7 @@
+/****************************************
+ * DOM Interaction *
+****************************************/
+
 const mainTitle = document.querySelector('h1');
 const registerForm = document.querySelector('form');
 const customerName = document.querySelector('#customer-name');
@@ -5,8 +9,13 @@ const salePrice = document.querySelector('#sale-price');
 const saleDate = document.querySelector('#sale-date');
 const salesContainer = document.querySelector('div.sales-container');
 const biggestSaleBtn = document.querySelector('a.biggest-sale');
+const saveBtn = document.querySelector('a.save-file');
 const tableBody = document.querySelector('tbody');
 const feedbackParagraph = document.createElement('p');
+
+/****************************************
+ * General Functionality *
+****************************************/
 
 const validateUsername = name => name.trim() === '' ? false : name;
 
@@ -72,7 +81,11 @@ const checkSalesVisibility = () => {
     return isHidden ? salesContainer.classList.remove('hidden') : null
 }
 
-registerForm.addEventListener('submit', e => {
+/****************************************
+ * Listeners and Handlers *
+****************************************/
+
+const registerHandler = e => {
     e.preventDefault();
 
     const validUsername = validateUsername(customerName.value);
@@ -89,19 +102,30 @@ registerForm.addEventListener('submit', e => {
     insertNewSale(validUsername, validSaleValue, formatedDate);
 
     registerForm.reset()
-})
+}
 
-biggestSaleBtn.addEventListener('click', () => {
+const getTheBiggestSale = () => {
     const registeredSales = JSON.parse(localStorage.getItem('sales'));
     const allSaleValues = registeredSales.map(({ value }) => Number(value));
 
     const biggestSale = allSaleValues.reduce((acc, value) => 
-        value > acc ? acc = value : acc , 0)
+        value > acc ? acc = value : acc, 0)
 
-    feedbackParagraph.textContent =`A maior venda teve o valor de R$${biggestSale}`
+    feedbackParagraph.textContent =`A maior venda teve o valor de R$${biggestSale}`;
     
-    mainTitle.insertAdjacentElement('afterend', feedbackParagraph)
+    mainTitle.insertAdjacentElement('afterend', feedbackParagraph);
+}
+
+registerForm.addEventListener('submit', registerHandler);
+biggestSaleBtn.addEventListener('click', getTheBiggestSale);
+
+saveBtn.addEventListener('click', () => {
+    console.log('Wants to the save the file!');
 })
+
+/****************************************
+ * Tweaks *
+****************************************/
 
 if (localStorage.getItem('sales')) {
     checkSalesVisibility();
