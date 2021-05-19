@@ -81,6 +81,20 @@ const checkSalesVisibility = () => {
     return isHidden ? salesContainer.classList.remove('hidden') : null
 }
 
+const getCellsText = ({ textContent }) => textContent;
+
+const getStringWithCommas = ({ cells }) => Array.from(cells).map(getCellsText);
+
+const createCSVString = tableRows => Array.from(tableRows)
+    .map(getStringWithCommas).join(',\n');
+
+const setCSVDownload = CSVString => {
+    const CSVURI = `data:text/csvcharset=utf-8,${encodeURIComponent(CSVString)}`;
+
+    saveBtn.setAttribute('href', CSVURI);
+    saveBtn.setAttribute('download', 'table.csv');
+}
+
 /****************************************
  * Listeners and Handlers *
 ****************************************/
@@ -116,12 +130,16 @@ const getTheBiggestSale = () => {
     mainTitle.insertAdjacentElement('afterend', feedbackParagraph);
 }
 
+const tableExportHandler = () => {
+    const tableRows = document.querySelectorAll('tr');
+    const CSVString = createCSVString(tableRows);
+    
+    setCSVDownload(CSVString);
+}
+
 registerForm.addEventListener('submit', registerHandler);
 biggestSaleBtn.addEventListener('click', getTheBiggestSale);
-
-saveBtn.addEventListener('click', () => {
-    console.log('Wants to the save the file!');
-})
+saveBtn.addEventListener('click', tableExportHandler);
 
 /****************************************
  * Tweaks *
